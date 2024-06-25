@@ -25,9 +25,9 @@ class TodoController extends Controller
 
     public function store(Request $request) // 追記
     {
-        $content = $request->input('content');
+        $inputs = $request->all(); // 変更
         $todo = new Todo(); 
-        $todo->content = $content;
+        $todo->fill($inputs); // 変更
         $todo->save();
 
         return redirect()->route('todo.index'); // 追記
